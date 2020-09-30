@@ -35,13 +35,6 @@ UDDDUDUU
 
 Sample Output
 1
-
-Explanation
-If we represent _ as sea level, a step up as /, and a step down as \, the hike can be drawn as:
-_/\      _
-   \    /
-    \/\/
-The hiker enters and leaves one valley.
 """
 
 #!/bin/python3
