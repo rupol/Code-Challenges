@@ -54,11 +54,27 @@ import sys
 
 # input: number of steps, path array, where each element represents a step up (U) or down (D) from sea level
 # output: the number of valleys walked
-## a valley is defined as a sequence of consecutive steps below sea level
+# a valley is defined as a sequence of consecutive steps below sea level
+
 
 def countingValleys(steps, path):
+    # keep track of elevation (so we know when we enter/exit a valley)
+    elevation = 0
+    # keep track of number of valleys walked
     num_valleys = 0
+    # iterate through path, incrementing elevation up and down
+    for step in path:
+        # increment num_valleys if elevation is 0 and we're stepping down (entering a valley)
+        if elevation == 0 and step == "D":
+            num_valleys += 1
+        # move elevation up or down depending on direction stepped
+        if step == "U":
+            elevation += 1
+        elif step == "D":
+            elevation -= 1
+
     return num_valleys
 
-path_a = [U,D,D,D,U,D,U,U]
-print(countingValleys(8, path_a))
+
+path_a = "DDUUDDUDUUUD"
+print(countingValleys(12, path_a))
