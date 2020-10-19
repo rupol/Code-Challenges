@@ -42,11 +42,10 @@ def sockMerchant(n, ar):
             sock_dict[sock] = 1
         else:
             sock_dict[sock] += 1
-    print(sock_dict)
     # find number of pairs in sock dict
     # divide number of socks for each "color" by 2 (rounding down)
     # add that number to the number of pairs
-    for sock_color, number_of_each_color in sock_dict.items():
+    for number_of_each_color in sock_dict.values():
         number_of_pairs += number_of_each_color // 2
     return number_of_pairs
 
