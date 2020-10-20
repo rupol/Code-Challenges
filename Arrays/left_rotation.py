@@ -29,6 +29,14 @@ Sample Output
 
 
 def rotLeft(a, d):
+    # perform d rotations
+    # for each "rotation"
+    for _ in range(d):
+        # remove the first element in the array
+        rotated_element = a.pop(0)
+        # append the element to the end of the array
+        a.append(rotated_element)
+
     return a
 
 
