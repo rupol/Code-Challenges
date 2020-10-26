@@ -1,5 +1,5 @@
 """
-https://leetcode.com/explore/interview/card/top-interview-questions-medium/103/array-and-strings/777/
+https://leetcode.com/problems/set-matrix-zeroes/solution/
 
 Given an m x n matrix. If an element is 0, set its entire row and column to 0. Do it in-place.
 
