@@ -9,7 +9,7 @@ Given a string s, find the longest palindromic substring in s. You may assume th
 # we need a variable to hold the current longest substring
 # brute force approach: split string into all substrings and test those with the helper function?
 
-
+"""
 palindrome_cache = {}
 
 
@@ -38,6 +38,41 @@ def longestPalindrome(s):
             if is_palindrome(substring):
                 if len(substring) > len(longest_palindrome):
                     return substring
+    return longest_palindrome
+
+
+a = 'abbe'
+print(longestPalindrome(a))  # expected "bb"
+"""
+
+# alternate (faster) solution
+
+
+def expandPalindrome(s, start, end):
+    # expand start left and end right while start and end characters match
+    while start >= 0 and end < len(s) and s[start] == s[end]:
+        start -= 1
+        end += 1
+
+    # return the palindrome
+    return s[start+1:end]
+
+
+def longestPalindrome(s):
+    longest_palindrome = ""
+
+    for i in range(len(s)):
+        # odd palindrome (e.g. aba) - centered around index
+        odd_palindrome = expandPalindrome(s, i, i)
+        # even palindrome (e.g. abba) - centered around index AND index + 1
+        even_palindrome = expandPalindrome(s, i, i + 1)
+
+        # get max of odd and even palindromes
+        current_longest_palindrome = odd_palindrome if len(
+            odd_palindrome) >= len(even_palindrome) else even_palindrome
+
+        longest_palindrome = longest_palindrome if len(longest_palindrome) >= len(
+            current_longest_palindrome) else current_longest_palindrome
     return longest_palindrome
 
 
