@@ -37,7 +37,14 @@ def splitArray(arr):
             arr2 = arr[i+1:]
             # discard one of the arrays (the shorter array)
             # how to do this optimally?
-            if len(arr1) > len(arr2):
+            # try to split these two subarays
+            can_split1 = splitArray(arr1)
+            can_split2 = splitArray(arr2)
+            if can_split1 == -1:
+                return arr2
+            elif can_split2 == -1:
+                return arr1
+            elif len(arr1) > len(arr2):
                 return arr1
             else:
                 return arr2
