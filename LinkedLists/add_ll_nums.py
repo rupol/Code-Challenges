@@ -39,6 +39,7 @@ class LinkedList:
             self.tail = new_node
 
 
+"""
 def linkedListToNum(ll):
     node = ll.head
     array = []
@@ -70,6 +71,54 @@ def addTwoNumbers(l1, l2):
             head = node
         tail = node
     return head
+"""
+
+"""
+# brute force digit addition approach
+def addTwoNumbers(l1, l2):
+    # add each node in l1 with the corresponding node in l2
+    # store these resulting values in a separate linked list
+    head1 = l1.head
+    head2 = l2.head
+    result1 = head1.val + head2.val
+    result2 = head1.next.val + head2.next.val
+    result3 = head1.next.next.val + head2.next.next.val
+    if result1 == 10:
+        head = ListNode(0)
+        result2 += 1
+    else:
+        head = ListNode(result1)
+    if result2 == 10:
+        head.next = ListNode(0)
+        result3 += 1
+    else:
+        head.next = ListNode(result2)
+
+    head.next.next = ListNode(result3)
+    return head
+"""
+
+
+def addTwoNumbers(l1, l2):
+    # add each node in l1 with the corresponding node in l2
+    # store these resulting values in a separate linked list
+    dummy_head = current = ListNode(0)
+    # keep track of carry over
+    carry = 0
+    # don't need these two lines for leetcode
+    l1 = l1.head
+    l2 = l2.head
+    while l1 or l2 or carry:
+        if l1:
+            carry += l1.val
+            l1 = l1.next
+        if l2:
+            carry += l2.val
+            l2 = l2.next
+        current.next = ListNode(carry % 10)
+        current = current.next
+        carry //= 10
+    return dummy_head.next
 
 
 linked_list_a = LinkedList()
